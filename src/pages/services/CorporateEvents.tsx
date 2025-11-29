@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle, Clock, Users, Award, Phone } from 'lucide-react';
+import { ArrowLeft, CheckCircle, Clock, Users, Award, Phone, Building2, Target, TrendingUp } from 'lucide-react';
 
 const CorporateEvents = () => {
   const features = [
@@ -14,44 +14,30 @@ const CorporateEvents = () => {
     'Networking Events'
   ];
 
-  const packages = [
+  const serviceDetails = [
     {
-      name: 'Essential',
-      price: 'From $5,000',
-      duration: '1-Day Event',
-      features: [
-        'Venue coordination',
-        'Basic AV setup',
-        'Catering management',
-        'Day-of coordination',
-        'Registration management'
-      ]
+      icon: Building2,
+      title: 'Strategic Planning & Execution',
+      description: 'We begin with a comprehensive consultation to understand your business objectives, target audience, and desired outcomes. Our team develops a strategic plan that aligns your event with your corporate goals, ensuring every element contributes to your success. From venue selection to vendor coordination, we handle all logistics with military precision, allowing you to focus on what matters most.',
+      highlights: ['Goal-oriented planning', 'Budget optimization', 'Risk management', 'Timeline development']
     },
     {
-      name: 'Professional',
-      price: 'From $15,000',
-      duration: '2-3 Day Event',
-      features: [
-        'Everything in Essential',
-        'Speaker coordination',
-        'Custom branding',
-        'Live streaming setup',
-        'Photography/videography',
-        'VIP guest management'
-      ]
+      icon: Users,
+      title: 'Professional Event Production',
+      description: 'Transform your corporate vision into reality with our full-service production capabilities. We manage everything from stage design and audiovisual requirements to lighting and technical support. Our experienced production team ensures flawless execution, whether you are hosting an intimate board meeting or a large-scale conference with thousands of attendees.',
+      highlights: ['Advanced AV systems', 'Professional staging', 'Technical support team', 'Live streaming capabilities']
     },
     {
-      name: 'Executive',
-      price: 'From $35,000',
-      duration: 'Multi-Day Event',
-      features: [
-        'Everything in Professional',
-        'Full event production',
-        'Entertainment booking',
-        'Transportation coordination',
-        'Accommodation management',
-        'Post-event analytics'
-      ]
+      icon: Target,
+      title: 'Brand Integration & Customization',
+      description: 'Every corporate event is an opportunity to strengthen your brand presence. We seamlessly integrate your brand identity throughout the event experience, from custom signage and branded materials to digital presentations and social media content. Our design team creates cohesive visual elements that reinforce your brand message and create lasting impressions on attendees.',
+      highlights: ['Custom branding', 'Collateral design', 'Digital integration', 'Photo opportunities']
+    },
+    {
+      icon: TrendingUp,
+      title: 'Post-Event Analytics & Follow-up',
+      description: 'Measure the success of your corporate event with comprehensive post-event analysis. We provide detailed reports on attendee engagement, ROI metrics, and feedback analysis to help you understand the impact of your investment. Our team also assists with follow-up communications, ensuring you maintain momentum and capitalize on the connections made during your event.',
+      highlights: ['Success metrics', 'Attendee surveys', 'ROI analysis', 'Follow-up strategy']
     }
   ];
 
@@ -128,44 +114,53 @@ const CorporateEvents = () => {
         </div>
       </section>
 
-      {/* Packages */}
+      {/* Service Details */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Service Packages
+              Our Comprehensive
+              <span className="bg-gradient-to-r from-[#1f7a8c] to-[#022b3a] bg-clip-text text-transparent">
+                {' '}Approach
+              </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose the package that best fits your corporate event needs and budget
+              End-to-end corporate event management services designed to elevate your business presence
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {packages.map((pkg, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
-                  <div className="text-3xl font-bold text-[#1f7a8c] mb-2">{pkg.price}</div>
-                  <p className="text-gray-600">{pkg.duration}</p>
+          <div className="space-y-12">
+            {serviceDetails.map((service, index) => (
+              <div key={index} className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-center bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300`}>
+                <div className="lg:w-1/3">
+                  <div className="w-24 h-24 bg-gradient-to-br from-[#bfdbf7] to-[#e1e5f2] rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <service.icon className="h-12 w-12 text-[#1f7a8c]" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">{service.title}</h3>
                 </div>
-                
-                <ul className="space-y-3 mb-8">
-                  {pkg.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center space-x-3">
-                      <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <Link
-                  to="/contact"
-                  className="w-full bg-gradient-to-r from-[#1f7a8c] to-[#022b3a] text-white py-3 rounded-full text-center font-semibold hover:shadow-lg transition-all duration-300 block"
-                >
-                  Get Quote
-                </Link>
+                <div className="lg:w-2/3">
+                  <p className="text-gray-600 leading-relaxed mb-6">{service.description}</p>
+                  <div className="grid md:grid-cols-2 gap-3">
+                    {service.highlights.map((highlight, highlightIndex) => (
+                      <div key={highlightIndex} className="flex items-center space-x-2">
+                        <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700">{highlight}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link
+              to="/contact"
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#1f7a8c] to-[#022b3a] text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300"
+            >
+              <Phone className="h-5 w-5" />
+              <span>Discuss Your Event</span>
+            </Link>
           </div>
         </div>
       </section>

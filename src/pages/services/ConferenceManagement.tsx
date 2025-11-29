@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle, Presentation, Mic, Users, Phone } from 'lucide-react';
+import { ArrowLeft, CheckCircle, Presentation, Mic, Users, Phone, Network, Video } from 'lucide-react';
 
 const ConferenceManagement = () => {
   const features = [
@@ -14,44 +14,30 @@ const ConferenceManagement = () => {
     'Post-Event Analytics'
   ];
 
-  const packages = [
+  const serviceDetails = [
     {
-      name: 'Basic Conference',
-      price: 'From $8,000',
-      duration: '1-Day Event',
-      features: [
-        'Venue coordination',
-        'Basic AV setup',
-        'Registration desk',
-        'Coffee breaks',
-        'Basic signage'
-      ]
+      icon: Presentation,
+      title: 'Speaker & Content Management',
+      description: 'Successful conferences depend on compelling content and smooth speaker coordination. We manage all aspects of speaker engagement, from initial outreach and contract negotiation to travel arrangements and on-site support. Our team creates detailed speaker briefs, coordinates presentation materials, manages AV requirements, and ensures every session runs on time. We also provide dedicated speaker support throughout the event.',
+      highlights: ['Speaker coordination', 'Content scheduling', 'Presentation support', 'Rehearsal management']
     },
     {
-      name: 'Professional Conference',
-      price: 'From $20,000',
-      duration: '2-3 Day Event',
-      features: [
-        'Everything in Basic',
-        'Speaker management',
-        'Live streaming',
-        'Networking sessions',
-        'Professional photography',
-        'Mobile event app'
-      ]
+      icon: Video,
+      title: 'Technical Production & AV',
+      description: 'Deliver a professional conference experience with state-of-the-art audiovisual production. We handle everything from stage design and lighting to sound systems, video walls, and live streaming capabilities. Our technical team conducts thorough equipment testing, manages real-time troubleshooting, and ensures seamless transitions between sessions. We can also provide recording services and post-event content distribution.',
+      highlights: ['Professional AV systems', 'Live streaming setup', 'Recording services', 'Technical support team']
     },
     {
-      name: 'Premium Conference',
-      price: 'From $45,000',
-      duration: 'Multi-Day Event',
-      features: [
-        'Everything in Professional',
-        'VIP guest management',
-        'Exhibition coordination',
-        'Simultaneous translation',
-        'Custom branding',
-        'Post-event reporting'
-      ]
+      icon: Network,
+      title: 'Attendee Experience & Engagement',
+      description: 'Create meaningful connections and maximize attendee value through strategic engagement planning. We design networking opportunities, facilitate breakout sessions, and incorporate interactive elements that encourage participation. From mobile event apps and digital networking tools to structured networking sessions and social events, we create multiple touchpoints for attendees to connect, learn, and collaborate.',
+      highlights: ['Registration management', 'Networking sessions', 'Interactive elements', 'Mobile event apps']
+    },
+    {
+      icon: Users,
+      title: 'Logistics & Operations',
+      description: 'Flawless execution requires meticulous attention to operational details. We coordinate venue logistics, catering services, registration processes, and all support services needed for a successful conference. Our team manages vendor relationships, oversees setup and teardown, coordinates staff and volunteers, and handles any issues that arise. Post-event, we provide comprehensive analytics and feedback reports to measure success.',
+      highlights: ['Venue coordination', 'Catering management', 'Staff coordination', 'Post-event analytics']
     }
   ];
 
@@ -128,44 +114,53 @@ const ConferenceManagement = () => {
         </div>
       </section>
 
-      {/* Packages */}
+      {/* Service Details */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Conference Packages
+              Professional Conference
+              <span className="bg-gradient-to-r from-[#1f7a8c] to-[#022b3a] bg-clip-text text-transparent">
+                {' '}Management
+              </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive solutions for conferences of all sizes and complexities
+              Full-service conference solutions for knowledge-sharing events of any scale
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {packages.map((pkg, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
-                  <div className="text-3xl font-bold text-[#1f7a8c] mb-2">{pkg.price}</div>
-                  <p className="text-gray-600">{pkg.duration}</p>
+          <div className="space-y-12">
+            {serviceDetails.map((service, index) => (
+              <div key={index} className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-center bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300`}>
+                <div className="lg:w-1/3">
+                  <div className="w-24 h-24 bg-gradient-to-br from-[#bfdbf7] to-[#e1e5f2] rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <service.icon className="h-12 w-12 text-[#1f7a8c]" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">{service.title}</h3>
                 </div>
-                
-                <ul className="space-y-3 mb-8">
-                  {pkg.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center space-x-3">
-                      <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <Link
-                  to="/contact"
-                  className="w-full bg-gradient-to-r from-[#1f7a8c] to-[#022b3a] text-white py-3 rounded-full text-center font-semibold hover:shadow-lg transition-all duration-300 block"
-                >
-                  Get Quote
-                </Link>
+                <div className="lg:w-2/3">
+                  <p className="text-gray-600 leading-relaxed mb-6">{service.description}</p>
+                  <div className="grid md:grid-cols-2 gap-3">
+                    {service.highlights.map((highlight, highlightIndex) => (
+                      <div key={highlightIndex} className="flex items-center space-x-2">
+                        <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700">{highlight}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link
+              to="/contact"
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#1f7a8c] to-[#022b3a] text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300"
+            >
+              <Phone className="h-5 w-5" />
+              <span>Plan Your Conference</span>
+            </Link>
           </div>
         </div>
       </section>

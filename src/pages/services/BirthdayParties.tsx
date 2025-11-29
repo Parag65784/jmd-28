@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle, Gift, Cake, Sparkles, Phone } from 'lucide-react';
+import { ArrowLeft, CheckCircle, Gift, Cake, Sparkles, Phone, PartyPopper } from 'lucide-react';
 
 const BirthdayParties = () => {
   const features = [
@@ -14,44 +14,30 @@ const BirthdayParties = () => {
     'Activity Coordination'
   ];
 
-  const packages = [
+  const serviceDetails = [
     {
-      name: 'Kids Party',
-      price: 'From $2,500',
-      duration: '3-4 Hours',
-      features: [
-        'Theme decorations',
-        'Entertainment (clown/magician)',
-        'Party games & activities',
-        'Birthday cake coordination',
-        'Party favors for guests'
-      ]
+      icon: Sparkles,
+      title: 'Custom Theme Development',
+      description: 'Every birthday deserves a celebration as unique as the guest of honor. We work with you to create a custom theme that reflects their personality, interests, and style. From superhero adventures and princess parties for kids to elegant vintage themes and tropical getaways for adults, our creative team brings any vision to life with cohesive decor, coordinated colors, and immersive details.',
+      highlights: ['Theme consultation', 'Custom decorations', 'Color coordination', 'Props & backdrops']
     },
     {
-      name: 'Teen Celebration',
-      price: 'From $5,000',
-      duration: '4-5 Hours',
-      features: [
-        'Everything in Kids Party',
-        'DJ & music setup',
-        'Photo booth with props',
-        'Catering & refreshments',
-        'Social media coordination',
-        'Custom invitations'
-      ]
+      icon: PartyPopper,
+      title: 'Entertainment & Activities',
+      description: 'Keep guests engaged and entertained throughout the celebration with carefully curated entertainment options. We coordinate age-appropriate activities, from interactive games and craft stations for children to DJs, live bands, and photo booths for teens and adults. Our entertainment partners are professional, reliable, and committed to creating magical moments that guests will remember.',
+      highlights: ['Professional entertainers', 'Interactive games', 'Music & DJ services', 'Photo booth experiences']
     },
     {
-      name: 'Adult Milestone',
-      price: 'From $10,000',
-      duration: '5-6 Hours',
-      features: [
-        'Everything in Teen Celebration',
-        'Premium venue coordination',
-        'Professional photography',
-        'Full bar service',
-        'Live entertainment options',
-        'Valet parking coordination'
-      ]
+      icon: Cake,
+      title: 'Catering & Cake Coordination',
+      description: 'Delight your guests with delicious food and show-stopping cakes that match your party theme. We work with trusted caterers and bakeries to create menus that suit all dietary preferences and age groups. From kid-friendly finger foods and colorful treats to gourmet appetizers and signature cocktails, we handle all food service details including setup, presentation, and cleanup.',
+      highlights: ['Menu planning', 'Cake design coordination', 'Dietary accommodations', 'Food presentation']
+    },
+    {
+      icon: Gift,
+      title: 'Complete Party Management',
+      description: 'Relax and enjoy the celebration while we handle all the details. Our team manages invitations, guest RSVPs, vendor coordination, timeline execution, and on-site supervision. We set up decorations, coordinate entertainment schedules, manage gift tables, and ensure smooth transitions throughout the event. After the party, we handle complete cleanup so you can focus on spending time with your loved ones.',
+      highlights: ['Invitation coordination', 'Guest management', 'Timeline execution', 'Setup & cleanup']
     }
   ];
 
@@ -128,44 +114,53 @@ const BirthdayParties = () => {
         </div>
       </section>
 
-      {/* Packages */}
+      {/* Service Details */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Birthday Party Packages
+              Complete Birthday Party
+              <span className="bg-gradient-to-r from-[#1f7a8c] to-[#022b3a] bg-clip-text text-transparent">
+                {' '}Services
+              </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Tailored packages for every age and celebration style
+              Celebrations tailored for all ages, from milestone birthdays to intimate gatherings
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {packages.map((pkg, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
-                  <div className="text-3xl font-bold text-[#1f7a8c] mb-2">{pkg.price}</div>
-                  <p className="text-gray-600">{pkg.duration}</p>
+          <div className="space-y-12">
+            {serviceDetails.map((service, index) => (
+              <div key={index} className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-center bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300`}>
+                <div className="lg:w-1/3">
+                  <div className="w-24 h-24 bg-gradient-to-br from-[#bfdbf7] to-[#e1e5f2] rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <service.icon className="h-12 w-12 text-[#1f7a8c]" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">{service.title}</h3>
                 </div>
-                
-                <ul className="space-y-3 mb-8">
-                  {pkg.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center space-x-3">
-                      <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <Link
-                  to="/contact"
-                  className="w-full bg-gradient-to-r from-[#1f7a8c] to-[#022b3a] text-white py-3 rounded-full text-center font-semibold hover:shadow-lg transition-all duration-300 block"
-                >
-                  Get Quote
-                </Link>
+                <div className="lg:w-2/3">
+                  <p className="text-gray-600 leading-relaxed mb-6">{service.description}</p>
+                  <div className="grid md:grid-cols-2 gap-3">
+                    {service.highlights.map((highlight, highlightIndex) => (
+                      <div key={highlightIndex} className="flex items-center space-x-2">
+                        <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700">{highlight}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link
+              to="/contact"
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#1f7a8c] to-[#022b3a] text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300"
+            >
+              <Phone className="h-5 w-5" />
+              <span>Plan Your Party</span>
+            </Link>
           </div>
         </div>
       </section>

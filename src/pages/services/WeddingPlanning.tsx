@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle, Heart, Camera, Music, Phone } from 'lucide-react';
+import { ArrowLeft, CheckCircle, Heart, Camera, Music, Phone, Sparkles, MapPin } from 'lucide-react';
 
 const WeddingPlanning = () => {
   const features = [
@@ -14,44 +14,30 @@ const WeddingPlanning = () => {
     'Photography Coordination'
   ];
 
-  const packages = [
+  const serviceDetails = [
     {
-      name: 'Essential',
-      price: 'From $8,000',
-      duration: 'Day-of Coordination',
-      features: [
-        'Wedding day coordination',
-        'Vendor management',
-        'Timeline creation',
-        'Ceremony & reception setup',
-        'Emergency kit provided'
-      ]
+      icon: MapPin,
+      title: 'Venue & Vendor Selection',
+      description: 'Finding the perfect venue sets the foundation for your dream wedding. We leverage our extensive network of premium venues and trusted vendors to match you with options that fit your vision, style, and budget. From romantic garden settings to elegant ballrooms, we guide you through every option and handle all negotiations, contracts, and communications on your behalf.',
+      highlights: ['Venue scouting', 'Vendor referrals', 'Contract negotiation', 'Site visits']
     },
     {
-      name: 'Premium',
-      price: 'From $18,000',
-      duration: 'Partial Planning',
-      features: [
-        'Everything in Essential',
-        '3 months planning support',
-        'Vendor recommendations',
-        'Design consultation',
-        'Rehearsal coordination',
-        'Guest communication'
-      ]
+      icon: Sparkles,
+      title: 'Design & Styling Services',
+      description: 'Transform your wedding vision into a breathtaking reality with our expert design services. Our creative team works closely with you to develop a cohesive aesthetic that reflects your personality and love story. From color palettes and floral arrangements to table settings and lighting design, we create an immersive experience that wows your guests and creates picture-perfect moments.',
+      highlights: ['Custom design concepts', 'Floral design', 'Lighting planning', 'Decor coordination']
     },
     {
-      name: 'Luxury',
-      price: 'From $35,000',
-      duration: 'Full Planning',
-      features: [
-        'Everything in Premium',
-        '12+ months planning support',
-        'Unlimited consultations',
-        'Custom design concepts',
-        'Honeymoon planning',
-        'Post-wedding cleanup'
-      ]
+      icon: Heart,
+      title: 'Comprehensive Timeline Management',
+      description: 'A well-organized timeline is crucial for a stress-free wedding day. We create detailed schedules that coordinate every element of your celebration, from getting ready to the grand exit. Our team manages vendor arrival times, ceremony proceedings, photo sessions, and reception events to ensure everything flows seamlessly. You will receive a comprehensive timeline that keeps everyone on track.',
+      highlights: ['Master timeline', 'Vendor schedules', 'Ceremony coordination', 'Reception flow']
+    },
+    {
+      icon: Camera,
+      title: 'Day-of Coordination & Support',
+      description: 'On your wedding day, our experienced coordinators take care of every detail so you can be fully present in each moment. We manage vendor setup, coordinate the bridal party, troubleshoot any issues that arise, and ensure your timeline stays on track. From the first look to the last dance, we are there to handle logistics while you celebrate with your loved ones.',
+      highlights: ['On-site coordination', 'Vendor management', 'Problem solving', 'Guest assistance']
     }
   ];
 
@@ -128,44 +114,53 @@ const WeddingPlanning = () => {
         </div>
       </section>
 
-      {/* Packages */}
+      {/* Service Details */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Wedding Packages
+              Complete Wedding
+              <span className="bg-gradient-to-r from-[#1f7a8c] to-[#022b3a] bg-clip-text text-transparent">
+                {' '}Planning Services
+              </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose the perfect package for your special day
+              From initial planning to your last dance, we handle every detail of your perfect day
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {packages.map((pkg, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
-                  <div className="text-3xl font-bold text-[#1f7a8c] mb-2">{pkg.price}</div>
-                  <p className="text-gray-600">{pkg.duration}</p>
+          <div className="space-y-12">
+            {serviceDetails.map((service, index) => (
+              <div key={index} className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-center bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300`}>
+                <div className="lg:w-1/3">
+                  <div className="w-24 h-24 bg-gradient-to-br from-[#bfdbf7] to-[#e1e5f2] rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <service.icon className="h-12 w-12 text-[#1f7a8c]" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">{service.title}</h3>
                 </div>
-                
-                <ul className="space-y-3 mb-8">
-                  {pkg.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center space-x-3">
-                      <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <Link
-                  to="/contact"
-                  className="w-full bg-gradient-to-r from-[#1f7a8c] to-[#022b3a] text-white py-3 rounded-full text-center font-semibold hover:shadow-lg transition-all duration-300 block"
-                >
-                  Get Quote
-                </Link>
+                <div className="lg:w-2/3">
+                  <p className="text-gray-600 leading-relaxed mb-6">{service.description}</p>
+                  <div className="grid md:grid-cols-2 gap-3">
+                    {service.highlights.map((highlight, highlightIndex) => (
+                      <div key={highlightIndex} className="flex items-center space-x-2">
+                        <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700">{highlight}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link
+              to="/contact"
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#1f7a8c] to-[#022b3a] text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300"
+            >
+              <Phone className="h-5 w-5" />
+              <span>Schedule Consultation</span>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle, Rocket, Camera, Megaphone, Phone } from 'lucide-react';
+import { ArrowLeft, CheckCircle, Rocket, Camera, Megaphone, Phone, TrendingUp } from 'lucide-react';
 
 const ProductLaunches = () => {
   const features = [
@@ -14,44 +14,30 @@ const ProductLaunches = () => {
     'Launch Event Production'
   ];
 
-  const packages = [
+  const serviceDetails = [
     {
-      name: 'Startup Launch',
-      price: 'From $12,000',
-      duration: 'Half-Day Event',
-      features: [
-        'Venue coordination',
-        'Basic media setup',
-        'Product display area',
-        'Press kit preparation',
-        'Social media coverage'
-      ]
+      icon: Rocket,
+      title: 'Strategic Launch Planning',
+      description: 'A successful product launch begins with strategic planning that aligns with your market entry goals. We conduct thorough market research, identify target audiences, and develop a comprehensive launch strategy that maximizes impact. Our team creates detailed timelines, coordinates all stakeholders, and develops contingency plans to ensure your product launch achieves its objectives and generates meaningful buzz in your industry.',
+      highlights: ['Market research', 'Strategy development', 'Timeline planning', 'Stakeholder coordination']
     },
     {
-      name: 'Professional Launch',
-      price: 'From $25,000',
-      duration: 'Full-Day Event',
-      features: [
-        'Everything in Startup',
-        'Influencer coordination',
-        'Live streaming setup',
-        'Professional photography',
-        'Media interviews',
-        'VIP reception'
-      ]
+      icon: Megaphone,
+      title: 'Media Relations & PR',
+      description: 'Generate maximum media coverage and public interest through strategic public relations efforts. We craft compelling press releases, coordinate media interviews, manage press conferences, and build relationships with key journalists and publications. Our PR team secures media placements, arranges exclusive previews, and creates buzz-worthy moments that amplify your message and drive awareness across traditional and digital media channels.',
+      highlights: ['Press release creation', 'Media outreach', 'Interview coordination', 'Press kit development']
     },
     {
-      name: 'Premium Launch',
-      price: 'From $50,000',
-      duration: 'Multi-Day Campaign',
-      features: [
-        'Everything in Professional',
-        'Celebrity endorsements',
-        'Multi-city coordination',
-        'Exclusive previews',
-        'International media',
-        'Post-launch analytics'
-      ]
+      icon: Camera,
+      title: 'Experiential Event Production',
+      description: 'Create an immersive launch experience that showcases your product and captivates attendees. We design interactive demonstrations, create Instagram-worthy photo opportunities, and produce engaging presentations that highlight your product benefits. From venue selection and stage design to lighting, sound, and multimedia integration, we ensure your launch event makes a lasting impression on guests, media, and influencers.',
+      highlights: ['Event production', 'Product demonstrations', 'Photo opportunities', 'Multimedia integration']
+    },
+    {
+      icon: TrendingUp,
+      title: 'Digital & Social Amplification',
+      description: 'Extend your launch reach through strategic digital marketing and social media campaigns. We coordinate influencer partnerships, create shareable content, manage live streaming, and leverage social platforms to amplify your message. Our team monitors online conversations, engages with audiences in real-time, and provides analytics to track campaign performance and measure return on investment for your product launch.',
+      highlights: ['Influencer partnerships', 'Social media strategy', 'Content creation', 'Campaign analytics']
     }
   ];
 
@@ -128,44 +114,53 @@ const ProductLaunches = () => {
         </div>
       </section>
 
-      {/* Packages */}
+      {/* Service Details */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Launch Packages
+              Comprehensive Product Launch
+              <span className="bg-gradient-to-r from-[#1f7a8c] to-[#022b3a] bg-clip-text text-transparent">
+                {' '}Services
+              </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Strategic launch solutions tailored to your product and market goals
+              Strategic solutions that generate buzz and drive market success for your product
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {packages.map((pkg, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
-                  <div className="text-3xl font-bold text-[#1f7a8c] mb-2">{pkg.price}</div>
-                  <p className="text-gray-600">{pkg.duration}</p>
+          <div className="space-y-12">
+            {serviceDetails.map((service, index) => (
+              <div key={index} className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-center bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300`}>
+                <div className="lg:w-1/3">
+                  <div className="w-24 h-24 bg-gradient-to-br from-[#bfdbf7] to-[#e1e5f2] rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <service.icon className="h-12 w-12 text-[#1f7a8c]" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">{service.title}</h3>
                 </div>
-                
-                <ul className="space-y-3 mb-8">
-                  {pkg.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center space-x-3">
-                      <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <Link
-                  to="/contact"
-                  className="w-full bg-gradient-to-r from-[#1f7a8c] to-[#022b3a] text-white py-3 rounded-full text-center font-semibold hover:shadow-lg transition-all duration-300 block"
-                >
-                  Get Quote
-                </Link>
+                <div className="lg:w-2/3">
+                  <p className="text-gray-600 leading-relaxed mb-6">{service.description}</p>
+                  <div className="grid md:grid-cols-2 gap-3">
+                    {service.highlights.map((highlight, highlightIndex) => (
+                      <div key={highlightIndex} className="flex items-center space-x-2">
+                        <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700">{highlight}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link
+              to="/contact"
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#1f7a8c] to-[#022b3a] text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300"
+            >
+              <Phone className="h-5 w-5" />
+              <span>Launch Strategy Session</span>
+            </Link>
           </div>
         </div>
       </section>
